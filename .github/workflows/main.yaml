@@ -5,7 +5,7 @@ on:
 
 jobs:
   approval:
-    runs_on: ubuntu_latest
+    runs-on: ubuntu_latest
     steps:
       - name: send approval
         uses: ./.github/actions/approval_on_slack
@@ -17,7 +17,7 @@ jobs:
           timeout: 10
 
   post_approval:
-    runs_on: ubuntu_latest
+    runs-on: ubuntu_latest
     steps:
       - name: Post approval step
         shell: bash
