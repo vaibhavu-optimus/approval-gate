@@ -8,13 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: send approval
-        uses: varu3/slack-approval@main
+        uses: TigerWest/slack-approval@v1.0.1
         env:
           SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
           SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
         timeout-minutes: 10
+        with:
+            approvers: vaibhavu-optimus
+            minimumApprovalCount: 1
+            baseMessagePayload: |
+              {}
+            successMessagePayload: |
+              {}
+            failMessagePayload: |
+              {}
 
   post_approval:
     runs-on: ubuntu-latest
