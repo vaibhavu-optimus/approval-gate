@@ -1,4 +1,4 @@
-Name: Slack approval
+name: Slack approval
 
 on:
   workflow_dispatch:
