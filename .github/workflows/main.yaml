@@ -7,17 +7,14 @@ jobs:
   approval:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-        
-      - name: Send approval request to Slack
-        uses: ./.github/actions/approval_on_slack
-        with:
-          slack_app_token: ${{ secrets.SLACK_APP_TOKEN }}
-          slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
-          slack_channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          slack_signing_secret: ${{ secrets.SLACK_SIGNING_SECRET }}
-          timeout: 10
+      - name: send approval
+        uses: varu3/slack-approval@main
+        env:
+          SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        timeout-minutes: 10
 
   post_approval:
     runs-on: ubuntu-latest
