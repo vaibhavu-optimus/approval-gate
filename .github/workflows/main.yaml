@@ -18,6 +18,7 @@ jobs:
 
   post_approval:
     runs-on: ubuntu_latest
+    needs: [ approval ]
     steps:
       - name: Post approval step
         shell: bash
