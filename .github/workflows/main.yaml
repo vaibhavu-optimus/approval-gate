@@ -1,0 +1,24 @@
+Name: Slack approval
+
+on:
+  workflow_dispatch:
+
+jobs:
+  approval:
+    runs_on: ubuntu_latest
+    steps:
+      - name: send approval
+        uses: ./.github/actions/approval_on_slack
+        with:
+          slack_app_token: ${{ secrets.SLACK_APP_TOKEN }}
+          slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack_channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          slack_signing_secret: ${{ secrets.SLACK_SIGNING_SECRET }}
+          timeout: 10
+
+  post_approval:
+    runs_on: ubuntu_latest
+    steps:
+      - name: Post approval step
+        shell: bash
+        run: echo "Hello World!!"
